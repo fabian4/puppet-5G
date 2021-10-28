@@ -1,0 +1,22 @@
+{
+  "name": "puppet-5g",
+  "version": "1.0.0",
+  "description": "puppet for 5g",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fabian4/puppet-5G.git"
+  },
+  "keywords": [
+    "wechaty"
+  ],
+  "author": "fabian",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/fabian4/puppet-5G/issues"
+  },
+  "homepage": "https://github.com/fabian4/puppet-5G#readme"
+}
