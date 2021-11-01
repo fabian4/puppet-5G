@@ -3,8 +3,36 @@
   "version": "1.0.0",
   "description": "puppet for 5g",
   "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/src/mod.js",
+      "require": "./dist/cjs/src/mod.js"
+    }
+  },
+  "typings": "./dist/esm/src/mod.d.ts",
+  "engines": {
+    "node": ">= 14",
+    "npm": ">=7",
+    "wechaty": ">=0.77"
+  },
   "scripts": {
-    "start": "tsc && node dist/sever/server.js"
+    "clean": "shx rm -fr dist/*",
+    "dist": "npm-run-all clean build dist:commonjs",
+    "build": "tsc && tsc -p tsconfig.cjs.json",
+    "dev": "cross-env NODE_OPTIONS=\"--no-warnings --loader=ts-node/esm\" node src/sever/sever.ts",
+    "dist:commonjs": "jq -n \"{ type: \\\"commonjs\\\" }\" > dist/cjs/package.json",
+    "start": "cross-env NODE_OPTIONS=\"--no-warnings --loader=ts-node/esm\" node examples/ding-dong-bot.ts",
+    "lint": "npm run lint:es && npm run lint:ts && npm run lint:md",
+    "lint:md": "markdownlint README.md",
+    "lint:ts": "tsc --isolatedModules --noEmit",
+    "lint:es": "eslint \"src/**/*.ts\" \"tests/**/*.spec.ts\" --ignore-pattern tests/fixtures/",
+    "test": "npm run lint && npm run test:unit",
+    "test:pack": "bash -x scripts/npm-pack-testing.sh",
+    "test:unit": "cross-env NODE_OPTIONS=\"--no-warnings --loader=ts-node/esm\" tap \"src/**/*.spec.ts\" \"tests/**/*.spec.ts\""
   },
   "repository": {
     "type": "git",
@@ -24,6 +52,8 @@
     "koa-router": "^10.1.1"
   },
   "devDependencies": {
+    "@chatie/eslint-config": "^0.14.1",
+    "@chatie/tsconfig": "^0.20.2",
     "@types/koa": "^2.13.4",
     "@types/koa-router": "^7.4.4",
     "nodemon": "^2.0.14",
