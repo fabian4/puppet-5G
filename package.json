@@ -49,10 +49,10 @@
   "homepage": "https://github.com/fabian4/puppet-5G#readme",
   "dependencies": {
     "koa": "^2.13.4",
-    "koa-router": "^10.1.1"
+    "koa-router": "^10.1.1",
+    "wechaty-puppet": "^1.0.1"
   },
   "devDependencies": {
-    "@chatie/eslint-config": "^0.14.1",
     "@chatie/tsconfig": "^0.20.2",
     "@types/koa": "^2.13.4",
     "@types/koa-router": "^7.4.4",

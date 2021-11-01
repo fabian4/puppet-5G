@@ -1,5 +1,5 @@
 import Koa from 'koa';
-import {logger} from "./logging";
+import logger from "./logging";
 import routers from "./routers";
 import {config} from "../config";
 
