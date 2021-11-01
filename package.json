@@ -2,23 +2,6 @@
   "name": "puppet-5g",
   "version": "1.0.0",
   "description": "puppet for 5g",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
-  "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/esm/src/mod.js",
-      "require": "./dist/cjs/src/mod.js"
-    }
-  },
-  "typings": "./dist/esm/src/mod.d.ts",
-  "engines": {
-    "node": ">= 14",
-    "npm": ">=7",
-    "wechaty": ">=0.77"
-  },
   "scripts": {
     "clean": "shx rm -fr dist/*",
     "dist": "npm-run-all clean build dist:commonjs",
@@ -53,6 +36,7 @@
     "wechaty-puppet": "^1.0.1"
   },
   "devDependencies": {
+    "@chatie/eslint-config": "^0.14.1",
     "@chatie/tsconfig": "^0.20.2",
     "@types/koa": "^2.13.4",
     "@types/koa-router": "^7.4.4",

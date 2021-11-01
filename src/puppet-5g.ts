@@ -1,28 +1,35 @@
-import {Puppet, PuppetOptions} from "wechaty-puppet";
-import {VERSION} from "./config";
+import {log, Puppet, PuppetOptions} from "wechaty-puppet";
 
 export type Puppet5gOptions = PuppetOptions & {
-    sms: string,
+    sipId: string,
+    appId: string,
+    appKey: string,
 }
 
 class Puppet5g extends Puppet {
 
-    static override readonly VERSION = VERSION;
+    private sipId: string
+    private appId: string
+    private appKey: string
 
-    sms: string | '+861234';
+    // constructor(options: Puppet5gOptions) {
+    //     super();
+    //     this.sipId = options.sipId
+    //     this.appId = options.appId
+    //     this.appKey = options.appKey
+    //     log.verbose('PuppetWalnut', 'constructor("%s")', JSON.stringify(options))
+    // }
 
-    onStart(): Promise<void> {
-        return Promise.resolve(undefined);
+    override async start (): Promise<void> {
     }
 
-    onStop(): Promise<void> {
-        return Promise.resolve(undefined);
+    async stop (): Promise<void> {
     }
 
-    constructor(public override options: Puppet5gOptions) {
-        super(options);
-        if (options.sms) {
-            this.sms = options.sms
-        }
+    async login (contactId: string): Promise<void> {
     }
+
+    async logout (): Promise<void> {
+    }
+
 }
