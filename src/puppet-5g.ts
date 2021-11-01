@@ -22,7 +22,6 @@ class Puppet5g extends Puppet {
         // this.appId = options.appId
         // this.appKey = options.appKey
         log.verbose('Puppet5g', 'constructor("%s")', JSON.stringify(options))
-        console.log("=========================== "+this.login())
 
     }
 
@@ -32,7 +31,6 @@ class Puppet5g extends Puppet {
         }).catch(e => {
             log.error('Puppet-Sever', 'sever init error: ' + e.toString())
         })
-        console.log("=========================== "+this.state.name)
         return Promise.resolve(undefined);
     }
 
