@@ -1,4 +1,6 @@
 import {log, Puppet, PuppetOptions} from "wechaty-puppet";
+import {initSever} from "./sever/sever";
+import {config} from "./config";
 
 export type Puppet5gOptions = PuppetOptions & {
     sipId: string,
@@ -8,28 +10,36 @@ export type Puppet5gOptions = PuppetOptions & {
 
 class Puppet5g extends Puppet {
 
-    private sipId: string
-    private appId: string
-    private appKey: string
+    static override readonly VERSION = "1.0.0"
 
-    // constructor(options: Puppet5gOptions) {
-    //     super();
-    //     this.sipId = options.sipId
-    //     this.appId = options.appId
-    //     this.appKey = options.appKey
-    //     log.verbose('PuppetWalnut', 'constructor("%s")', JSON.stringify(options))
-    // }
+    // private sipId: string
+    // private appId: string
+    // private appKey: string
 
-    override async start (): Promise<void> {
+    constructor(options: Puppet5gOptions) {
+        super();
+        // this.sipId = options.sipId
+        // this.appId = options.appId
+        // this.appKey = options.appKey
+        log.verbose('Puppet5g', 'constructor("%s")', JSON.stringify(options))
+        console.log("=========================== "+this.login())
+
     }
 
-    async stop (): Promise<void> {
+    onStart(): Promise<void> {
+        initSever().then(() => {
+            log.verbose('Puppet-Sever', `Server running on port ${config.port}`);
+        }).catch(e => {
+            log.error('Puppet-Sever', 'sever init error: ' + e.toString())
+        })
+        console.log("=========================== "+this.state.name)
+        return Promise.resolve(undefined);
     }
 
-    async login (contactId: string): Promise<void> {
-    }
-
-    async logout (): Promise<void> {
+    onStop(): Promise<void> {
+        return Promise.resolve(undefined);
     }
 
 }
+
+export default Puppet5g
