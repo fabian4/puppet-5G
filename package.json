@@ -4,7 +4,7 @@
   "description": "puppet for 5g",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc && node dist/sever/server.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,8 @@
     "koa-router": "^10.1.1"
   },
   "devDependencies": {
+    "@types/koa": "^2.13.4",
+    "@types/koa-router": "^7.4.4",
     "nodemon": "^2.0.14",
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4"
