@@ -35,6 +35,7 @@ class Puppet5g extends Puppet {
     }
 
     onStop(): Promise<void> {
+
         return Promise.resolve(undefined);
     }
 
