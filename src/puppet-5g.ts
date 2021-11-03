@@ -1,6 +1,7 @@
 import {log, Puppet, PuppetOptions} from "wechaty-puppet";
 import {initSever} from "./sever/sever";
 import {config} from "./config";
+import {updateToken} from "./requests/login";
 
 export type Puppet5gOptions = PuppetOptions & {
     sipId: string,
@@ -31,6 +32,7 @@ class Puppet5g extends Puppet {
         }).catch(e => {
             log.error('Puppet-Sever', 'sever init error: ' + e.toString())
         })
+        updateToken()
         return Promise.resolve(undefined);
     }
 

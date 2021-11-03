@@ -1,3 +1,5 @@
 /.idea/
 
 /package-lock.json
+
+/src/requests/Api.ts
