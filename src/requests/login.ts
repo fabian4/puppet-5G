@@ -1,5 +1,6 @@
-import fetch from 'node-fetch';
 import {config_local} from "../../local";
+
+import fetch from "node-fetch"
 
 export async function updateToken() {
     const response = await fetch(`http://maap.5g-msg.com:30001/bot/v1/sip:${config_local.sipId}@botplatform.rcs.chinaunicom.cn/accessToken`, {

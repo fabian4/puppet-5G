@@ -1,11 +1,4 @@
 import Puppet5g from "../src/puppet-5g";
-import type {
-    EventErrorPayload,
-    EventLoginPayload,
-    EventLogoutPayload,
-    EventMessagePayload,
-    EventScanPayload
-} from "wechaty-puppet/dist/esm/src/schemas/event";
 import {log} from "wechaty-puppet";
 
 /**
@@ -26,11 +19,11 @@ log.level('verbose')
  *
  */
 puppet
-    .on('logout', onLogout)
-    .on('login',  onLogin)
-    .on('scan',   onScan)
-    .on('error',  onError)
-    .on('message', onMessage)
+    // .on('logout', onLogout)
+    // .on('login',  onLogin)
+    // .on('scan',   onScan)
+    // .on('error',  onError)
+    // .on('message', onMessage)
 
 
 /**
@@ -51,31 +44,31 @@ puppet.start()
  *  `scan`, `login`, `logout`, `error`, and `message`
  *
  */
-function onScan (payload: EventScanPayload) {
-    if (payload.qrcode) {
-        const qrcodeImageUrl = [
-            'https://wechaty.js.org/qrcode/',
-            encodeURIComponent(payload.qrcode),
-        ].join('')
-        console.info(`[${payload.status}] ${qrcodeImageUrl}\nScan QR Code above to log in: `)
-
-    } else {
-        console.info(`[${payload.status}]`)
-    }
-}
-
-function onLogin (payload: EventLoginPayload) {
-    console.info(`${payload.contactId} login`)
-    puppet.messageSendText(payload.contactId, 'Wechaty login').catch(console.error)
-}
-
-function onLogout (payload: EventLogoutPayload) {
-    console.info(`${payload.contactId} logouted`)
-}
-
-function onError (payload: EventErrorPayload) {
-    console.error('Bot error:', payload.data)
-}
+// function onScan (payload: EventScanPayload) {
+//     if (payload.qrcode) {
+//         const qrcodeImageUrl = [
+//             'https://wechaty.js.org/qrcode/',
+//             encodeURIComponent(payload.qrcode),
+//         ].join('')
+//         console.info(`[${payload.status}] ${qrcodeImageUrl}\nScan QR Code above to log in: `)
+//
+//     } else {
+//         console.info(`[${payload.status}]`)
+//     }
+// }
+//
+// function onLogin (payload: EventLoginPayload) {
+//     console.info(`${payload.contactId} login`)
+//     puppet.messageSendText(payload.contactId, 'Wechaty login').catch(console.error)
+// }
+//
+// function onLogout (payload: EventLogoutPayload) {
+//     console.info(`${payload.contactId} logouted`)
+// }
+//
+// function onError (payload: EventErrorPayload) {
+//     console.error('Bot error:', payload.data)
+// }
 
 /**
  *
@@ -83,23 +76,23 @@ function onError (payload: EventErrorPayload) {
  *    dealing with Messages.
  *
  */
-async function onMessage (payload: EventMessagePayload) {
-    const msgPayload = await puppet.messagePayload(payload.messageId)
-    if (/ding/i.test(msgPayload.text || '')) {
-        console.info('ding success')
-        await puppet.messageSendText(
-            msgPayload.fromId!,
-            'dong',
-        )
-    } else {
-        console.info('ding not found')
-        await puppet.messageSendText(
-            msgPayload.fromId!,
-            'ding please',
-        )
-    }
-    console.info(JSON.stringify(msgPayload))
-}
+// async function onMessage (payload: EventMessagePayload) {
+//     const msgPayload = await puppet.messagePayload(payload.messageId)
+//     if (/ding/i.test(msgPayload.text || '')) {
+//         console.info('ding success')
+//         await puppet.messageSendText(
+//             msgPayload.fromId!,
+//             'dong',
+//         )
+//     } else {
+//         console.info('ding not found')
+//         await puppet.messageSendText(
+//             msgPayload.fromId!,
+//             'ding please',
+//         )
+//     }
+//     console.info(JSON.stringify(msgPayload))
+// }
 
 /**
  *
