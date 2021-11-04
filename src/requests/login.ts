@@ -1,15 +1,18 @@
 import {config_local} from "../../local";
 
-import fetch from "node-fetch"
+import axios from 'axios'
+import {api} from "./Api";
 
 export async function updateToken() {
-    const response = await fetch(`http://maap.5g-msg.com:30001/bot/v1/sip:${config_local.sipId}@botplatform.rcs.chinaunicom.cn/accessToken`, {
+    await axios.request({
+        url: api.accessToken,
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
+        data: {
             appId: config_local.appId,
             appKey: config_local.appKey
-        })
-    });
-    console.log(await response.json())
+        }
+    }).then(res => {
+        console.log(res.data)
+    })
 }
