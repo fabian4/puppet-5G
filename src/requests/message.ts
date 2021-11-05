@@ -2,14 +2,14 @@ import {post} from "./request";
 import {api} from "./Api";
 import {bot} from "../../local";
 
-export function send(){
+export function send(msg: string){
     post(api.sendMessage, {
         "messageId": "1",
         "messageList": [
             {
                 "contentType": "text/plain",
                 "contentEncoding": "utf8",
-                "contentText": "hello world"
+                "contentText": msg
             }
         ],
         "destinationAddress": ["tel:+8613911833788"],
@@ -20,9 +20,6 @@ export function send(){
                 "version": "+g.gsma.rcs.botversion=\"#=1\""
             }
         ],
-        "smsSupported": false,
-        "smsContent": "hello world!",
-        "storeSupported": false,
         "conversationId": "XSFDSFDFSAFDSAS^%",
         "contributionId": "SFF$#REGFY7&^%THT"
     }).then(res => {

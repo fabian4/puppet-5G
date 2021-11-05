@@ -1,5 +1,6 @@
 import Puppet5g from "../src/puppet-5g";
 import {log} from "wechaty-puppet";
+import {send} from "../src/requests/message";
 
 /**
  *
@@ -23,7 +24,7 @@ puppet
     // .on('login',  onLogin)
     // .on('scan',   onScan)
     // .on('error',  onError)
-    // .on('message', onMessage)
+    .on('message', onMessage)
 
 
 /**
@@ -76,23 +77,10 @@ puppet.start()
  *    dealing with Messages.
  *
  */
-// async function onMessage (payload: EventMessagePayload) {
-//     const msgPayload = await puppet.messagePayload(payload.messageId)
-//     if (/ding/i.test(msgPayload.text || '')) {
-//         console.info('ding success')
-//         await puppet.messageSendText(
-//             msgPayload.fromId!,
-//             'dong',
-//         )
-//     } else {
-//         console.info('ding not found')
-//         await puppet.messageSendText(
-//             msgPayload.fromId!,
-//             'ding please',
-//         )
-//     }
-//     console.info(JSON.stringify(msgPayload))
-// }
+async function onMessage (payload: { messageId: string; }) {
+    console.log('receive message: ' + payload.messageId)
+    send('dong')
+}
 
 /**
  *

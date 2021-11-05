@@ -1,4 +1,5 @@
 import Router from "koa-router";
+import type Puppet5g from "../puppet-5g";
 
 const router = new Router();
 
@@ -11,8 +12,8 @@ router.get('/sms/notifyPath', async (ctx: any) => {
 })
 
 router.post('/sms/messageNotification/sip:20210401@botplatform.rcs.chinaunicom.cn/messages', async (ctx: any) => {
-    console.log(ctx.header)
-    console.log(ctx.request.body)
+    const puppet: Puppet5g = ctx.puppet
+    puppet.onMessage(ctx.request.body.messageList[0]['contentText'])
 })
 
 export default router.routes()

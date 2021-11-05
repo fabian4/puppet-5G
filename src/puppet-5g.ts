@@ -1,8 +1,7 @@
 import {log, Puppet, PuppetOptions} from "wechaty-puppet";
 import {initSever} from "./sever/sever";
 import {config} from "./config";
-// import {updateToken} from "./requests/request";
-// import {send} from "./requests/message";
+import {updateToken} from "./requests/request";
 
 export type Puppet5gOptions = PuppetOptions & {
     sipId: string,
@@ -29,13 +28,11 @@ class Puppet5g extends Puppet {
 
     onStart(): Promise<void> {
 
-        initSever().then(() => {
+        initSever(this).then(() => {
             log.info('Puppet-Sever', `Server running on port ${config.port}`);
         })
 
-        // updateToken()
-
-        // send()
+        updateToken()
 
         return Promise.resolve(undefined);
     }
@@ -44,6 +41,11 @@ class Puppet5g extends Puppet {
         return Promise.resolve(undefined);
     }
 
+    onMessage(message: string){
+        this.emit("message", {
+            msg: message
+        })
+    }
 }
 
 export default Puppet5g
