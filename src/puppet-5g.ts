@@ -1,8 +1,8 @@
 import {log, Puppet, PuppetOptions} from "wechaty-puppet";
 import {initSever} from "./sever/sever";
 import {config} from "./config";
-import {updateToken} from "./requests/request";
-import {send} from "./requests/message";
+// import {updateToken} from "./requests/request";
+// import {send} from "./requests/message";
 
 export type Puppet5gOptions = PuppetOptions & {
     sipId: string,
@@ -33,9 +33,9 @@ class Puppet5g extends Puppet {
             log.info('Puppet-Sever', `Server running on port ${config.port}`);
         })
 
-        updateToken()
+        // updateToken()
 
-        send()
+        // send()
 
         return Promise.resolve(undefined);
     }

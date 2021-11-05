@@ -12,7 +12,7 @@ export function send(){
                 "contentText": "hello world"
             }
         ],
-        "destinationAddr": ["tel:+8615751763183"],
+        "destinationAddress": ["tel:+8613911833788"],
         "senderAddress": bot.sipId + "@" + bot.chatbotId,
         "serviceCapabilit": [
             {
