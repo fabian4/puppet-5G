@@ -1,7 +1,7 @@
 import {log, Puppet, PuppetOptions} from "wechaty-puppet";
 import {initSever} from "./sever/sever";
 import {config} from "./config";
-// import {updateToken} from "./requests/request";
+import {updateToken} from "./requests/request";
 import {initApi} from "./requests/Api";
 
 export type Puppet5gOptions = PuppetOptions & {
@@ -40,7 +40,7 @@ class Puppet5g extends Puppet {
 
         initApi(this)
 
-        // updateToken(this)
+        updateToken(this)
 
         return Promise.resolve(undefined);
     }

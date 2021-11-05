@@ -9,7 +9,7 @@ let headers = {
 }
 
 export function updateToken(puppet: Puppet5g) {
-    return axios.request({
+    axios.request({
         url: base + api.accessToken,
         method: 'POST',
         headers: headers,
@@ -22,7 +22,7 @@ export function updateToken(puppet: Puppet5g) {
         log.info('update-token', `new Token: ${headers['authorization']}`)
     })
     // 定时两小时
-    setTimeout(updateToken(), 2 * 60 * 60 * 60 * 60)
+    setTimeout(updateToken, 2 * 60 * 60 * 60 * 60, puppet)
 }
 
 export function get(params: {}, url: string) {
