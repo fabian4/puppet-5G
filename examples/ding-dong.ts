@@ -1,6 +1,7 @@
 import Puppet5g from "../src/puppet-5g";
 import {log} from "wechaty-puppet";
 import {send} from "../src/requests/message";
+import {bot} from "../local";
 
 /**
  *
@@ -8,9 +9,9 @@ import {send} from "../src/requests/message";
  *
  */
 const puppet = new Puppet5g({
-    sipId: "20210401",
-    appId: "28871d8c83954bc78424ffcbff80285c",
-    appKey: " 3b9cc5506af2466aa82eee4c04f86471"
+    sipId: bot.sipId,
+    appId: bot.appId,
+    appKey: bot.appKey
 })
 log.level('verbose')
 

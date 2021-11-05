@@ -1,10 +1,10 @@
 import {post} from "./request";
 import {api} from "./Api";
-import {bot} from "../../local";
+import stringRandom from "string-random";
 
 export function send(msg: string){
     post(api.sendMessage, {
-        "messageId": "1",
+        "messageId": stringRandom(10),
         "messageList": [
             {
                 "contentType": "text/plain",
@@ -13,7 +13,7 @@ export function send(msg: string){
             }
         ],
         "destinationAddress": ["tel:+8613911833788"],
-        "senderAddress": bot.sipId + "@" + bot.chatbotId,
+        // "senderAddress": bot.sipId + "@" + bot.chatbotId,
         "serviceCapabilit": [
             {
                 "capabilityId": "ChatbotSA",

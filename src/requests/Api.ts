@@ -1,8 +1,13 @@
-import {bot} from "../../local";
+import type Puppet5g from "../puppet-5g";
 
-const base = `http://${bot.serverRoot}/bot/${bot.apiVersion}/${bot.sipId}@${bot.chatbotId}`
+export let base: string
 
 export const api = {
-    accessToken: base + '/accessToken',
-    sendMessage: base + '/messages'
+    accessToken: '/accessToken',
+    sendMessage: '/messages'
 }
+
+export function initApi(puppet: Puppet5g) {
+    base = `http://${puppet.serverRoot}/bot/${puppet.apiVersion}/${puppet.chatbotId}`
+}
+
