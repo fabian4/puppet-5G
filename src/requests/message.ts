@@ -13,7 +13,7 @@ export function send(msg: string){
             }
         ],
         "destinationAddress": ["tel:+8613911833788"],
-        "senderAddress": bot.sipId + "@" + bot.chatbotId,
+        // "senderAddress": bot.sipId + "@" + bot.chatbotId,
         "serviceCapabilit": [
             {
                 "capabilityId": "ChatbotSA",
