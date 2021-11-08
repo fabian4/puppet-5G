@@ -50,9 +50,7 @@ class Puppet5g extends Puppet {
     }
 
     onMessage(message: string){
-        this.emit("message", {
-            msg: message
-        })
+        this.emit("message", message)
     }
 }
 

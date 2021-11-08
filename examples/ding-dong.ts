@@ -1,7 +1,8 @@
 import Puppet5g from "../src/puppet-5g";
 import {log} from "wechaty-puppet";
-import {send} from "../src/help/message";
+// import {send} from "../src/help/message";
 import {bot} from "../local";
+import {send} from "../src/help/message";
 
 /**
  *
@@ -25,7 +26,10 @@ puppet
     // .on('login',  onLogin)
     // .on('scan',   onScan)
     // .on('error',  onError)
-    .on('message', onMessage)
+    .on('message', (msg) => {
+        console.log('receive message: ' + msg)
+        send('dong')
+    })
 
 
 /**
@@ -78,10 +82,10 @@ puppet.start()
  *    dealing with Messages.
  *
  */
-async function onMessage (payload: { messageId: string; }) {
-    console.log('receive message: ' + payload.messageId)
-    send('dong')
-}
+// async function onMessage (msg: string) {
+//     console.log('receive message: ' + msg)
+//     send('dong')
+// }
 
 /**
  *
