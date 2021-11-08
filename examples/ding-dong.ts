@@ -2,11 +2,11 @@ import Puppet5g from "../src/puppet-5g";
 import {log} from "wechaty-puppet";
 import {bot} from "../local";
 import {send} from "../src/help/message";
-// import type {Message} from "wechaty";
 import type {
     EventErrorPayload,
     EventLoginPayload,
-    EventLogoutPayload, EventMessagePayload,
+    EventLogoutPayload,
+    EventMessagePayload,
     EventScanPayload
 } from "wechaty-puppet/dist/esm/src/schemas/event";
 
