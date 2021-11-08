@@ -1,8 +1,14 @@
 import Puppet5g from "../src/puppet-5g";
 import {log} from "wechaty-puppet";
-// import {send} from "../src/help/message";
 import {bot} from "../local";
 import {send} from "../src/help/message";
+// import type {Message} from "wechaty";
+import type {
+    EventErrorPayload,
+    EventLoginPayload,
+    EventLogoutPayload, EventMessagePayload,
+    EventScanPayload
+} from "wechaty-puppet/dist/esm/src/schemas/event";
 
 /**
  *
@@ -16,20 +22,18 @@ const puppet = new Puppet5g({
 })
 log.level('verbose')
 
+// @ts-ignore
 /**
  *
  * 2. Register event handlers for Bot
  *
  */
 puppet
-    // .on('logout', onLogout)
-    // .on('login',  onLogin)
-    // .on('scan',   onScan)
-    // .on('error',  onError)
-    .on('message', (msg) => {
-        console.log('receive message: ' + msg)
-        send('dong')
-    })
+    .on('logout', onLogout)
+    .on('login',  onLogin)
+    .on('scan',   onScan)
+    .on('error',  onError)
+    .on('message', onMessage)
 
 
 /**
@@ -50,31 +54,31 @@ puppet.start()
  *  `scan`, `login`, `logout`, `error`, and `message`
  *
  */
-// function onScan (payload: EventScanPayload) {
-//     if (payload.qrcode) {
-//         const qrcodeImageUrl = [
-//             'https://wechaty.js.org/qrcode/',
-//             encodeURIComponent(payload.qrcode),
-//         ].join('')
-//         console.info(`[${payload.status}] ${qrcodeImageUrl}\nScan QR Code above to log in: `)
-//
-//     } else {
-//         console.info(`[${payload.status}]`)
-//     }
-// }
-//
-// function onLogin (payload: EventLoginPayload) {
-//     console.info(`${payload.contactId} login`)
-//     puppet.messageSendText(payload.contactId, 'Wechaty login').catch(console.error)
-// }
-//
-// function onLogout (payload: EventLogoutPayload) {
-//     console.info(`${payload.contactId} logouted`)
-// }
-//
-// function onError (payload: EventErrorPayload) {
-//     console.error('Bot error:', payload.data)
-// }
+function onScan (payload: EventScanPayload) {
+    if (payload.qrcode) {
+        const qrcodeImageUrl = [
+            'https://wechaty.js.org/qrcode/',
+            encodeURIComponent(payload.qrcode),
+        ].join('')
+        console.info(`[${payload.status}] ${qrcodeImageUrl}\nScan QR Code above to log in: `)
+
+    } else {
+        console.info(`[${payload.status}]`)
+    }
+}
+
+function onLogin (payload: EventLoginPayload) {
+    console.info(`${payload.contactId} login`)
+    puppet.messageSendText(payload.contactId, 'Wechaty login').catch(console.error)
+}
+
+function onLogout (payload: EventLogoutPayload) {
+    console.info(`${payload.contactId} logouted`)
+}
+
+function onError (payload: EventErrorPayload) {
+    console.error('Bot error:', payload.data)
+}
 
 /**
  *
@@ -82,10 +86,12 @@ puppet.start()
  *    dealing with Messages.
  *
  */
-// async function onMessage (msg: string) {
-//     console.log('receive message: ' + msg)
-//     send('dong')
-// }
+async function onMessage (msg: EventMessagePayload) {
+    console.log('receive message: ' + msg.messageId)
+    if(msg.messageId === 'ding'){
+        send("dong")
+    }
+}
 
 /**
  *

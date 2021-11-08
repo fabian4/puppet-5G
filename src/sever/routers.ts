@@ -14,7 +14,6 @@ router.get('/sms/notifyPath', async (ctx: any) => {
 router.post('/sms/messageNotification/sip:20210401@botplatform.rcs.chinaunicom.cn/messages', async (ctx: any) => {
     const puppet: Puppet5g = ctx.puppet
     console.log(ctx.request.body)
-    console.log(ctx.request.body.messageList[0]['contentText'])
     puppet.onMessage(ctx.request.body.messageList[0]['contentText'])
 })
 

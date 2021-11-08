@@ -10,4 +10,3 @@ export const api = {
 export function initApi(puppet: Puppet5g) {
     base = `http://${puppet.serverRoot}/bot/${puppet.apiVersion}/${puppet.chatbotId}`
 }
-
