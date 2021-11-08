@@ -14,6 +14,7 @@ export function send(msg: string){
         ],
         "destinationAddress": ["tel:+8613911833788"],
         // "senderAddress": bot.sipId + "@" + bot.chatbotId,
+        "senderAddress": 'sip:20210401@botplatform.rcs.chinaunicom.cn',
         "serviceCapabilit": [
             {
                 "capabilityId": "ChatbotSA",
