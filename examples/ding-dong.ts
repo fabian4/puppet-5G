@@ -1,6 +1,6 @@
 import Puppet5g from "../src/puppet-5g";
 import {log} from "wechaty-puppet";
-import {send} from "../src/requests/message";
+import {send} from "../src/help/message";
 import {bot} from "../local";
 
 /**

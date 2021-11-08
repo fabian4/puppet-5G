@@ -1,8 +1,8 @@
 import {log, Puppet, PuppetOptions} from "wechaty-puppet";
 import {initSever} from "./sever/sever";
 import {config} from "./config";
-import {updateToken} from "./requests/request";
-import {initApi} from "./requests/Api";
+import {updateToken} from "./help/request";
+import {initApi} from "./help/Api";
 
 export type Puppet5gOptions = PuppetOptions & {
     sipId: string,
