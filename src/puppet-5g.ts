@@ -3,6 +3,7 @@ import {initSever} from "./sever/sever";
 import {config} from "./config";
 import {updateToken} from "./help/request";
 import {initApi} from "./help/Api";
+import type {MessagePayload} from "wechaty-puppet/dist/esm/src/schemas/message";
 
 export type Puppet5gOptions = PuppetOptions & {
     sipId: string,
@@ -47,6 +48,15 @@ class Puppet5g extends Puppet {
 
     onStop(): Promise<void> {
         return Promise.resolve(undefined);
+    }
+
+    override async messageRawPayloadParser (payload: MessagePayload) {
+        return payload
+    }
+
+    override async messageRawPayload (id: string): Promise<MessagePayload> {
+        log.verbose('PuppetMock', 'messageRawPayload(%s)', id)
+        // return this.mocker.messagePayload(id)
     }
 
     onMessage(message: string){
