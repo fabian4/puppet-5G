@@ -1,12 +1,8 @@
-import type Puppet5g from "../puppet-5g";
+import {config} from "../config";
 
-export let base: string
+export const base: string = `http://${config.serverRoot}/bot/${config.apiVersion}/${config.chatbotId}`
 
 export const api = {
-    accessToken: '/accessToken',
-    sendMessage: '/messages'
-}
-
-export function initApi(puppet: Puppet5g) {
-    base = `http://${puppet.serverRoot}/bot/${puppet.apiVersion}/${puppet.chatbotId}`
+    accessToken: base + '/accessToken',
+    sendMessage: base + '/messages'
 }

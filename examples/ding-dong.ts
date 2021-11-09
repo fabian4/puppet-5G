@@ -1,6 +1,6 @@
 import Puppet5g from "../src/puppet-5g";
 import {log} from "wechaty-puppet";
-import {config} from "../local";
+import {local} from "../local";
 // import {send} from "../src/help/message";
 import {Message, WechatyBuilder} from "wechaty";
 
@@ -10,15 +10,15 @@ import {Message, WechatyBuilder} from "wechaty";
  *
  */
 const puppet = new Puppet5g({
-    sipId: config.sipId,
-    appId: config.appId,
-    appKey: config.appKey
+    sipId: local.sipId,
+    appId: local.appId,
+    appKey: local.appKey
 })
 const bot = WechatyBuilder.build({
     name: 'myBot',
     puppet: puppet
 })
-log.level('verbose')
+log.level('silly')
 
 /**
  *
