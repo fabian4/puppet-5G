@@ -2,6 +2,8 @@ import * as PUPPET  from 'wechaty-puppet';
 import {initSever} from "./sever/sever";
 import {config} from "./config";
 import {updateToken} from "./help/request";
+import {messageParse} from "./help/prase";
+import type {message} from "./help/struct";
 
 export type Puppet5gOptions = PUPPET.PuppetOptions & {
     sipId: string,
@@ -24,6 +26,7 @@ class Puppet5g extends PUPPET.Puppet {
         this.sipId = options.sipId
         this.appId = options.appId
         this.appKey = options.appKey
+        config.chatbotId = `sip:${this.sipId}@botplatform.rcs.chinaunicom.cn`
         this.cacheMessagePayload = new Map()
         this.cacheContactPayload = new Map()
         PUPPET.log.verbose('Puppet5g', 'constructor("%s")', JSON.stringify(options))
@@ -35,9 +38,11 @@ class Puppet5g extends PUPPET.Puppet {
             PUPPET.log.info('Puppet-Sever', `Server running on port ${config.port}`);
         })
 
+        console.log(config.chatbotId)
+
         updateToken(this)
 
-        this.login(this.sipId)
+        this.login(config.chatbotId)
 
         return Promise.resolve(undefined);
     }
@@ -60,17 +65,10 @@ class Puppet5g extends PUPPET.Puppet {
         return this.cacheMessagePayload.get(id)!
     }
 
-    onMessage(message: string){
-        this.cacheMessagePayload.set(message, {
-            id: message,
-            timestamp: 2352345135,
-            type: PUPPET.type.Message.Text,
-            fromId: '23512344',
-            toId: '352352345'
-        })
-        this.emit("message", {
-            messageId: message
-        })
+    onMessage(message: message){
+        const msg: PUPPET.payload.Message = messageParse(message)
+        this.cacheMessagePayload.set(message.messageId, msg)
+        this.emit("message", {messageId: message.messageId})
     }
 
     /**

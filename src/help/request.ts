@@ -1,5 +1,5 @@
 import axios from "axios";
-import {api} from "./Api";
+import {api, base} from "./Api";
 import {log} from "wechaty-puppet";
 import type Puppet5g from "../puppet-5g";
 
@@ -10,7 +10,7 @@ let headers = {
 
 export function updateToken(puppet: Puppet5g) {
     axios.request({
-        url: api.accessToken,
+        url: base + api.accessToken,
         method: 'POST',
         headers: headers,
         data: {
@@ -27,7 +27,7 @@ export function updateToken(puppet: Puppet5g) {
 
 export function get(params: {}, url: string) {
     return axios.request({
-        url: url,
+        url: base + url,
         method: 'GET',
         headers: headers,
         data: {
@@ -38,7 +38,7 @@ export function get(params: {}, url: string) {
 
 export function post(url: string, params: {}) {
     return axios.request({
-        url: url,
+        url: base + url,
         method: 'POST',
         headers: headers,
         data: {
