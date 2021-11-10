@@ -3,6 +3,7 @@ import {initSever} from "./sever/sever";
 import {config} from "./config";
 import {updateToken} from "./help/request";
 import type {MessagePayload} from "wechaty-puppet/dist/esm/src/schemas/message";
+import {Message} from "wechaty";
 
 export type Puppet5gOptions = PuppetOptions & {
     sipId: string,
@@ -52,9 +53,10 @@ class Puppet5g extends Puppet {
         return this.cacheMessagePayload.get(id)!
     }
 
-    onMessage(message: string){
+    onMessage(message: Message){
+        this.cacheMessagePayload.set(message.id, message)
         this.emit("message", {
-            messageId: message
+            messageId: message.id
         })
     }
 }
