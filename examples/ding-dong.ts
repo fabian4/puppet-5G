@@ -80,7 +80,7 @@ bot.start()
  *
  */
 async function onMessage (msg: Message) {
-    console.log('receive message: ' + msg)
+    console.log('receive message: ' + msg.id)
     // if(msg.messageId === 'ding'){
     //     send("dong")
     // }
