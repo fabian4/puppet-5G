@@ -15,18 +15,16 @@ class Puppet5g extends PUPPET.Puppet {
 
     static override readonly VERSION = "1.0.0"
 
-    sipId: string
-    appId: string
-    appKey: string
     cacheMessagePayload : Map<string, PUPPET.payload.Message>
     cacheContactPayload : Map<string, PUPPET.payload.Contact>
 
     constructor(options: Puppet5gOptions) {
         super();
-        this.sipId = options.sipId
-        this.appId = options.appId
-        this.appKey = options.appKey
-        config.chatbotId = `sip:${this.sipId}@botplatform.rcs.chinaunicom.cn`
+        config.sipId = options.sipId
+        config.appId = options.appId
+        config.appKey = options.appKey
+        config.chatbotId = `sip:${config.sipId}@botplatform.rcs.chinaunicom.cn`
+        config.base = `http://${config.serverRoot}/bot/${config.apiVersion}/${config.chatbotId}`
         this.cacheMessagePayload = new Map()
         this.cacheContactPayload = new Map()
         PUPPET.log.verbose('Puppet5g', 'constructor("%s")', JSON.stringify(options))
@@ -38,9 +36,7 @@ class Puppet5g extends PUPPET.Puppet {
             PUPPET.log.info('Puppet-Sever', `Server running on port ${config.port}`);
         })
 
-        console.log(config.chatbotId)
-
-        updateToken(this)
+        updateToken()
 
         this.login(config.chatbotId)
 

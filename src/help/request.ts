@@ -1,33 +1,33 @@
 import axios from "axios";
-import {api, base} from "./Api";
+import {api} from "./Api";
 import {log} from "wechaty-puppet";
-import type Puppet5g from "../puppet-5g";
+import {config} from "../config";
 
 let headers = {
     'authorization': 'accessToken ',
     'Content-Type': 'application/json'
 }
 
-export function updateToken(puppet: Puppet5g) {
+export function updateToken() {
     axios.request({
-        url: base + api.accessToken,
+        url: config.base + api.accessToken,
         method: 'POST',
         headers: headers,
         data: {
-            appId: puppet.appId,
-            appKey: puppet.appKey
+            appId: config.appId,
+            appKey: config.appKey
         }
     }).then(res => {
         headers.authorization = headers.authorization + res.data.accessToken
         log.info('update-token', `new Token: ${headers['authorization']}`)
     })
     // 定时两小时
-    setTimeout(updateToken, 2 * 60 * 60 * 60 * 60, puppet)
+    setTimeout(updateToken, 2 * 60 * 60 * 60 * 60)
 }
 
 export function get(params: {}, url: string) {
     return axios.request({
-        url: base + url,
+        url: config.base + url,
         method: 'GET',
         headers: headers,
         data: {
@@ -38,7 +38,7 @@ export function get(params: {}, url: string) {
 
 export function post(url: string, params: {}) {
     return axios.request({
-        url: base + url,
+        url: config.base + url,
         method: 'POST',
         headers: headers,
         data: {
