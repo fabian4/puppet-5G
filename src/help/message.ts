@@ -1,8 +1,9 @@
 import {post} from "./request";
 import {api} from "./Api";
 import stringRandom from "string-random";
+import {config} from "../config";
 
-export function send(msg: string){
+export function send(to: string, msg: string){
     post(api.sendMessage, {
         "messageId": stringRandom(10),
         "messageList": [
@@ -12,9 +13,8 @@ export function send(msg: string){
                 "contentText": msg
             }
         ],
-        "destinationAddress": ["tel:+8613911833788"],
-        // "senderAddress": bot.sipId + "@" + bot.chatbotId,
-        "senderAddress": 'sip:20210401@botplatform.rcs.chinaunicom.cn',
+        "destinationAddress": [`tel:+86${to}`],
+        "senderAddress": config.chatbotId,
         "serviceCapabilit": [
             {
                 "capabilityId": "ChatbotSA",
@@ -23,7 +23,5 @@ export function send(msg: string){
         ],
         "conversationId": "XSFDSFDFSAFDSAS^%",
         "contributionId": "SFF$#REGFY7&^%THT"
-    }).then(res => {
-        console.log(res.data)
     })
 }

@@ -4,6 +4,7 @@ import {config} from "./config";
 import {updateToken} from "./help/request";
 import {messageParse} from "./help/prase";
 import type {message} from "./help/struct";
+import {send} from "./help/message";
 
 export type Puppet5gOptions = PUPPET.PuppetOptions & {
     sipId: string,
@@ -52,13 +53,17 @@ class Puppet5g extends PUPPET.Puppet {
      * Message
      *
      */
-    override async messageRawPayloadParser (payload: PUPPET.payload.Message) {
+    override async messageRawPayloadParser(payload: PUPPET.payload.Message) {
         return payload
     }
 
-    override async messageRawPayload (id: string): Promise<PUPPET.payload.Message> {
+    override async messageRawPayload(id: string): Promise<PUPPET.payload.Message> {
         PUPPET.log.verbose('Puppet5g', 'messageRawPayload(%s)', id)
         return this.cacheMessagePayload.get(id)!
+    }
+
+    override async messageSendText(to: string, msg: string) {
+        send(to, msg)
     }
 
     onMessage(message: message){

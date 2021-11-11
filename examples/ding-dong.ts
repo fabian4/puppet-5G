@@ -81,9 +81,9 @@ bot.start()
  */
 async function onMessage (msg: Message) {
     console.log(`receive message: ${msg.text()}`)
-    // if(msg.messageId === 'ding'){
-    //     send("dong")
-    // }
+    if(msg.text() === 'ding'){
+        await msg.talker().say("dong")
+    }
 }
 
 /**
