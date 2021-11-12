@@ -17,7 +17,7 @@ const bot = WechatyBuilder.build({
     name: 'myBot',
     puppet: puppet
 })
-log.level('silly')
+log.level('info')
 
 /**
  *

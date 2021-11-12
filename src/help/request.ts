@@ -19,7 +19,7 @@ export function updateToken() {
         }
     }).then(res => {
         headers.authorization = headers.authorization + res.data.accessToken
-        log.info('update-token', `new Token: ${headers['authorization']}`)
+        log.info('update-token', `${headers['authorization']}`)
     })
     // 定时两小时
     setTimeout(updateToken, 2 * 60 * 60 * 60 * 60)

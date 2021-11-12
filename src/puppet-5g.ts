@@ -34,7 +34,7 @@ class Puppet5g extends PUPPET.Puppet {
     onStart(): Promise<void> {
 
         initSever(this).then(() => {
-            PUPPET.log.info('Puppet-Sever', `Server running on port ${config.port}`);
+            PUPPET.log.info('Puppet5g-Sever', `Server running on port ${config.port}`);
         })
 
         updateToken()
@@ -79,7 +79,7 @@ class Puppet5g extends PUPPET.Puppet {
      */
     override async contactRawPayloadParser (payload: PUPPET.payload.Contact) { return payload }
     override async contactRawPayload (id: string): Promise<PUPPET.payload.Contact> {
-        PUPPET.log.verbose('PuppetMock', 'contactRawPayload(%s)', id)
+        PUPPET.log.verbose('Puppet5g', 'contactRawPayload(%s)', id)
         return this.cacheContactPayload.get(id)!
     }
 }

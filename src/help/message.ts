@@ -5,7 +5,7 @@ import {config} from "../config";
 
 export function send(to: string, msg: string){
     post(api.sendMessage, {
-        "messageId": stringRandom(10),
+        "messageId": stringRandom(20),
         "messageList": [
             {
                 "contentType": "text/plain",

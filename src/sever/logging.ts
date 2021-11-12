@@ -1,4 +1,5 @@
 import type Koa from "koa";
+import * as PUPPET  from 'wechaty-puppet';
 
 interface ILogData {
     method: string;
@@ -15,7 +16,7 @@ interface ILogData {
 }
 
 function outputLog(data: Partial<ILogData>, thrownError: any) {
-    console.log(`puppet-5g sever ==> ${data.statusCode} ${data.method} ${data.url} - ${data.responseTime}ms`);
+    PUPPET.log.verbose(`Puppet5g-Sever`, `${data.statusCode} ${data.method} ${data.url} - ${data.responseTime}ms`);
     if (thrownError) {
         console.error(thrownError);
     }
