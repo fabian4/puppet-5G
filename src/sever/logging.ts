@@ -15,7 +15,7 @@ interface ILogData {
 }
 
 function outputLog(data: Partial<ILogData>, thrownError: any) {
-    console.log(`${data.statusCode} ${data.method} ${data.url} - ${data.responseTime}ms`);
+    console.log(`puppet-5g sever ==> ${data.statusCode} ${data.method} ${data.url} - ${data.responseTime}ms`);
     if (thrownError) {
         console.error(thrownError);
     }

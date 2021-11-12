@@ -4,10 +4,6 @@ import type Puppet5g from "../puppet-5g";
 
 const router = new Router();
 
-router.get('/', async (ctx: any) => {
-    ctx.body = 'Hello World!';
-});
-
 router.get('/sms/notifyPath', async (ctx: any) => {
     console.log(ctx.header)
 })
