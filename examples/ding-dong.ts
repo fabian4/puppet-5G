@@ -46,31 +46,6 @@ bot.start()
  *  `scan`, `login`, `logout`, `error`, and `message`
  *
  */
-// function onScan (payload: EventScanPayload) {
-//     if (payload.qrcode) {
-//         const qrcodeImageUrl = [
-//             'https://wechaty.js.org/qrcode/',
-//             encodeURIComponent(payload.qrcode),
-//         ].join('')
-//         console.info(`[${payload.status}] ${qrcodeImageUrl}\nScan QR Code above to log in: `)
-//
-//     } else {
-//         console.info(`[${payload.status}]`)
-//     }
-// }
-//
-// function onLogin (payload: EventLoginPayload) {
-//     console.info(`${payload.contactId} login`)
-//     puppet.messageSendText(payload.contactId, 'Wechaty login').catch(console.error)
-// }
-//
-// function onLogout (payload: EventLogoutPayload) {
-//     console.info(`${payload.contactId} logouted`)
-// }
-//
-// function onError (payload: EventErrorPayload) {
-//     console.error('Bot error:', payload.data)
-// }
 
 /**
  *
