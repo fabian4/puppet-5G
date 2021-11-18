@@ -1,4 +1,5 @@
 export const api = {
     accessToken: '/accessToken',
-    sendMessage: '/messages'
+    sendMessage: '/messages',
+    revokeMessage: '/revoke'
 }

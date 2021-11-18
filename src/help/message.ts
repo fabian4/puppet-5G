@@ -23,7 +23,10 @@ export function send(to: string, msg: string) {
         ],
         "conversationId": "XSFDSFDFSAFDSAS^%",
         "contributionId": "SFF$#REGFY7&^%THT"
-    })
+    }).then(res => {
+            console.log(res.data.messageId)
+        }
+    )
 
     // post(api.sendMessage, {
     //         "messageId": stringRandom(20),
@@ -117,4 +120,15 @@ export function send(to: string, msg: string) {
     //         "contributionId": "SFF$#REGFY7&^%THT"
     //     }
     // )
+}
+
+export function revoke(){
+    post(api.revokeMessage, {
+        "messageId": "VqHUQJH8qbWFQDlqAGns",
+        "destinationAddress": [`tel:+8613911833788`],
+        "status": "RevokeRequested",
+    }).then(res => {
+            console.log(res.data)
+        }
+    )
 }

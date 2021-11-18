@@ -2,6 +2,7 @@ import Puppet5g from "../src/puppet-5g";
 import {log} from "wechaty-puppet";
 import {local} from "../local";
 import {Message, WechatyBuilder} from "wechaty";
+import {revoke} from "../src/help/message";
 
 /**
  *
@@ -57,6 +58,8 @@ async function onMessage (msg: Message) {
     console.log(`receive message: ${msg.text()}`)
     if(msg.text() === 'ding'){
         await msg.talker().say("dong")
+    }else {
+        await revoke()
     }
 }
 
