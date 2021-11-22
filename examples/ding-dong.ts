@@ -2,7 +2,6 @@ import Puppet5g from "../src/puppet-5g";
 import {log} from "wechaty-puppet";
 import {local} from "../local";
 import {Message, WechatyBuilder} from "wechaty";
-import {revoke} from "../src/help/message";
 
 /**
  *
@@ -41,6 +40,8 @@ bot.start()
         process.exit(-1)
     })
 
+bot.say("0000")
+
 /**
  *
  * 4. Define Event Handler Functions for:
@@ -58,8 +59,6 @@ async function onMessage (msg: Message) {
     console.log(`receive message: ${msg.text()}`)
     if(msg.text() === 'ding'){
         await msg.talker().say("dong")
-    }else {
-        await revoke()
     }
 }
 

@@ -124,7 +124,7 @@ export function send(to: string, msg: string) {
 
 export function revoke(){
     post(api.revokeMessage, {
-        "messageId": "VqHUQJH8qbWFQDlqAGns",
+        "messageId": "VqHUSH8qbWFQDlqAGns",
         "destinationAddress": [`tel:+8613911833788`],
         "status": "RevokeRequested",
     }).then(res => {
