@@ -17,7 +17,7 @@ const bot = WechatyBuilder.build({
     name: 'myBot',
     puppet: puppet
 })
-log.level('info')
+log.level('verbose')
 
 /**
  *
@@ -39,8 +39,6 @@ bot.start()
         await puppet.stop()
         process.exit(-1)
     })
-
-bot.say("0000")
 
 /**
  *
