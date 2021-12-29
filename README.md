@@ -1,6 +1,6 @@
 # puppet-5G
 
-## ❗❗↗️See the latest work here 👉 https://github.com/wechaty/puppet-walnut
+## ❗↗️See the latest work here 👉 https://github.com/wechaty/puppet-walnut
 
 ### 🚩 TODO List
 #### 1. message sending and receiving
